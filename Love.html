@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0a0a0f">
+<title>Devran & Ayşenur — 8. Yıl ♥️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{
+  margin:0;padding:0;box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-text-size-adjust:100%;
+}
+html{
+  font-size:16px;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+body{
+  background:#0a0a0f;
+  color:#f5e6d3;
+  font-family:'Lato',sans-serif;
+  min-height:100vh;
+  min-height:100dvh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  touch-action:manipulation;
+}
+
+/* STARS */
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{
+  position:absolute;background:#fff;border-radius:50%;
+  animation:twinkle var(--dur) infinite;opacity:0;
+}
+@keyframes twinkle{0%,100%{opacity:0}50%{opacity:var(--op)}}
+
+/* PETALS */
+.petal{
+  position:fixed;pointer-events:none;z-index:1;
+  animation:fall linear infinite;
+  will-change:transform;
+}
+@keyframes fall{
+  0%{transform:translateY(-60px) rotate(0deg);opacity:1}
+  100%{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+.page{position:relative;z-index:2}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:max(env(safe-area-inset-top,1.5rem),1.5rem) 1.2rem max(env(safe-area-inset-bottom,2rem),2rem);
+  background:radial-gradient(ellipse at 50% 40%,rgba(120,0,40,.35) 0%,transparent 70%);
+}
+.couple-names{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,9vw,5rem);
+  font-weight:700;color:#f5c4d0;
+  letter-spacing:.02em;
+  text-shadow:0 0 40px rgba(245,100,120,.4);
+  animation:fadeInDown 1.2s ease both;
+  line-height:1.2;
+  word-break:break-word;
+}
+.heart-divider{
+  font-size:clamp(1.6rem,6vw,2.4rem);
+  margin:.5rem 0;color:#e84463;
+  animation:heartbeat 1.5s ease-in-out infinite;
+  display:block;
+  filter:drop-shadow(0 0 10px rgba(232,68,99,.7));
+}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+
+.year-badge{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(4.5rem,22vw,9rem);
+  font-weight:700;color:transparent;
+  background:linear-gradient(135deg,#e84463,#f5c4d0,#e84463);
+  -webkit-background-clip:text;background-clip:text;
+  line-height:1;
+  animation:fadeInUp 1.6s ease both;
+}
+.year-label{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(.9rem,4vw,1.5rem);
+  color:#f5c4d0;letter-spacing:.15em;
+  text-transform:uppercase;margin-top:.3rem;
+  animation:fadeInUp 1.8s ease both;
+}
+.start-date{
+  margin-top:.8rem;
+  font-size:clamp(.78rem,3.5vw,.9rem);
+  color:rgba(245,196,208,.7);letter-spacing:.08em;
+  animation:fadeInUp 2s ease both;
+  padding:0 .5rem;
+  line-height:1.5;
+}
+
+/* COUNTDOWN */
+.countdown-box{
+  margin-top:1.5rem;
+  display:flex;gap:clamp(.4rem,1.5vw,.8rem);
+  justify-content:center;flex-wrap:nowrap;
+  animation:fadeInUp 2.2s ease both;
+  width:100%;max-width:360px;
+}
+.c-unit{text-align:center;flex:1;min-width:0}
+.c-num{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.4rem,7vw,2.5rem);
+  font-weight:700;color:#e84463;display:block;
+  text-shadow:0 0 15px rgba(232,68,99,.5);
+  line-height:1.1;
+}
+.c-lbl{
+  font-size:clamp(.52rem,2.2vw,.65rem);
+  letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(245,196,208,.6);
+  display:block;margin-top:.15rem;
+}
+.c-sep{
+  font-size:clamp(1.3rem,6vw,2.5rem);
+  color:rgba(232,68,99,.4);
+  align-self:flex-start;padding-top:.12rem;
+  flex-shrink:0;
+}
+.scroll-hint{
+  margin-top:1.5rem;
+  color:rgba(245,196,208,.4);
+  font-size:.78rem;letter-spacing:.1em;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* SECTIONS */
+.section{
+  padding:3rem 1rem;
+  max-width:100%;
+}
+@media(min-width:480px){.section{padding:3.5rem 1.4rem}}
+@media(min-width:600px){.section{padding:5rem 2rem;max-width:960px;margin:0 auto}}
+
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.3rem,6vw,2.5rem);
+  color:#f5c4d0;text-align:center;margin-bottom:2rem;
+  position:relative;line-height:1.3;
+}
+.section-title::after{
+  content:'';display:block;width:50px;height:2px;
+  background:linear-gradient(90deg,transparent,#e84463,transparent);
+  margin:.7rem auto 0;
+}
+
+/* STATS */
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:.6rem;
+}
+@media(min-width:400px){.stats-grid{gap:.8rem}}
+@media(min-width:480px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:700px){.stats-grid{grid-template-columns:repeat(4,1fr);gap:1rem}}
+
+.stat-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(245,196,208,.15);
+  border-radius:12px;
+  padding:1rem .6rem;
+  text-align:center;
+  transition:transform .3s,border-color .3s;
+  -webkit-user-select:none;user-select:none;
+}
+.stat-card:active{transform:scale(.97);border-color:rgba(232,68,99,.4)}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.1rem,5vw,2rem);
+  font-weight:700;color:#e84463;display:block;
+  word-break:break-all;line-height:1.2;
+}
+.stat-desc{
+  font-size:clamp(.58rem,2vw,.7rem);
+  color:rgba(245,196,208,.6);
+  letter-spacing:.05em;text-transform:uppercase;
+  margin-top:.25rem;line-height:1.3;
+}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:1.6rem}
+.timeline::before{
+  content:'';position:absolute;left:.35rem;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,#e84463,#f5c4d0,#e84463,transparent);
+}
+.tl-item{
+  position:relative;margin-bottom:1.8rem;padding-left:1rem;
+  opacity:0;transform:translateX(-12px);
+  transition:all .6s ease;
+}
+.tl-item.visible{opacity:1;transform:translateX(0)}
+.tl-dot{
+  position:absolute;left:-1.65rem;top:.3rem;
+  width:11px;height:11px;border-radius:50%;
+  background:#e84463;border:2px solid #0a0a0f;
+  box-shadow:0 0 8px rgba(232,68,99,.6);
+}
+.tl-year{
+  font-size:clamp(.62rem,2.2vw,.72rem);
+  letter-spacing:.1em;color:#e84463;text-transform:uppercase;margin-bottom:.2rem;
+}
+.tl-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(.95rem,4vw,1.2rem);
+  color:#f5e6d3;margin-bottom:.2rem;line-height:1.3;
+}
+.tl-text{
+  font-size:clamp(.82rem,3vw,.88rem);
+  color:rgba(245,230,211,.65);line-height:1.7;
+}
+
+/* LOVE CARD */
+.love-card{
+  background:rgba(232,68,99,.08);
+  border:1px solid rgba(232,68,99,.25);
+  border-radius:16px;padding:1.8rem 1.2rem;
+  text-align:center;position:relative;overflow:hidden;
+}
+.love-card::before{
+  content:'❝';position:absolute;top:-.5rem;left:.8rem;
+  font-size:4.5rem;color:rgba(232,68,99,.1);
+  font-family:'Playfair Display',serif;line-height:1;
+}
+.love-text{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(.92rem,3.5vw,1.25rem);
+  font-style:italic;color:#f5e6d3;line-height:1.9;
+  position:relative;z-index:1;
+}
+.love-sig{
+  margin-top:1.2rem;font-size:.82rem;
+  color:rgba(245,196,208,.7);letter-spacing:.08em;
+}
+
+/* MEMORIES */
+.memories-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:.6rem;
+}
+@media(min-width:400px){.memories-grid{gap:.8rem}}
+@media(min-width:600px){.memories-grid{grid-template-columns:repeat(3,1fr)}}
+
+.memory-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(245,196,208,.15);
+  border-radius:12px;padding:1rem .7rem;
+  opacity:0;transform:translateY(12px);
+  transition:all .6s ease;
+}
+.memory-card.visible{opacity:1;transform:translateY(0)}
+.memory-icon{font-size:1.7rem;margin-bottom:.5rem;display:block;text-align:center}
+.memory-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(.82rem,3.2vw,.95rem);
+  color:#f5c4d0;margin-bottom:.25rem;text-align:center;
+}
+.memory-text{
+  font-size:clamp(.7rem,2.5vw,.78rem);
+  color:rgba(245,196,208,.55);line-height:1.6;text-align:center;
+}
+
+/* POEM */
+.poem-box{
+  border-left:3px solid #e84463;
+  padding:1.1rem 1.2rem;
+  margin:1.5rem 0;
+  background:rgba(232,68,99,.05);
+  border-radius:0 12px 12px 0;
+}
+.poem-line{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(.88rem,3.5vw,1.1rem);
+  color:#f5e6d3;line-height:2;
+}
+
+/* PROMISES */
+.promise-list{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+.promise-list li{
+  display:flex;align-items:flex-start;gap:.7rem;
+  font-size:clamp(.85rem,3.2vw,.95rem);
+  color:rgba(245,230,211,.8);line-height:1.6;
+}
+.promise-list li::before{
+  content:'♥️';color:#e84463;flex-shrink:0;
+  margin-top:.15rem;font-size:.95rem;
+}
+
+/* LOVE WORDS STRIP */
+.love-words-section{
+  padding:1.5rem 0;overflow:hidden;position:relative;
+}
+.love-words-section::before,.love-words-section::after{
+  content:'';position:absolute;top:0;bottom:0;width:50px;z-index:2;pointer-events:none;
+}
+.love-words-section::before{left:0;background:linear-gradient(90deg,#0a0a0f,transparent)}
+.love-words-section::after{right:0;background:linear-gradient(-90deg,#0a0a0f,transparent)}
+.love-strip{
+  display:flex;gap:1.5rem;
+  animation:scrollLeft 70s linear infinite;
+  white-space:nowrap;width:max-content;
+  will-change:transform;
+}
+.love-strip-rev{animation:scrollRight 80s linear infinite}
+@keyframes scrollLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scrollRight{from{transform:translateX(-50%)}to{transform:translateX(0%)}}
+.love-word{
+  display:inline-flex;flex-direction:column;
+  align-items:center;gap:.12rem;padding:0 .3rem;
+}
+.lw-text{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(.88rem,3.2vw,1.1rem);
+  color:#f5c4d0;font-style:italic;
+}
+.lw-lang{
+  font-size:clamp(.5rem,1.8vw,.6rem);
+  color:rgba(245,196,208,.4);letter-spacing:.08em;text-transform:uppercase;
+}
+.lw-heart{color:#e84463;font-size:.75rem}
+
+/* DIVIDER */
+.wavy-divider{
+  text-align:center;color:rgba(232,68,99,.3);
+  font-size:1.1rem;letter-spacing:.2em;padding:.7rem 0;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:2.5rem 1.5rem;
+  padding-bottom:calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  font-family:'Playfair Display',serif;
+  font-size:.95rem;color:rgba(245,196,208,.5);font-style:italic;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* CONFETTI */
+#confetti-canvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:999;display:none;
+}
+
+/* MIDNIGHT OVERLAY */
+#midnight-overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,.92);z-index:998;display:none;
+  align-items:center;justify-content:center;flex-direction:column;
+  text-align:center;
+  padding:max(env(safe-area-inset-top,1.5rem),1.5rem) 1.5rem max(env(safe-area-inset-bottom,1.5rem),1.5rem);
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.midnight-msg{
+  font-family:'Playfair Display',serif;color:#f5c4d0;
+  font-size:clamp(1.4rem,7vw,3.5rem);font-weight:700;
+  animation:pulse 1.5s ease-in-out infinite;
+  line-height:1.3;
+}
+.midnight-sub{
+  margin-top:1rem;font-family:'Playfair Display',serif;
+  font-style:italic;color:rgba(245,196,208,.8);
+  font-size:clamp(.9rem,4vw,1.4rem);line-height:1.5;
+}
+@keyframes pulse{
+  0%,100%{text-shadow:0 0 20px rgba(232,68,99,.5)}
+  50%{text-shadow:0 0 50px rgba(232,68,99,1),0 0 80px rgba(245,196,208,.5)}
+}
+.close-btn{
+  margin-top:1.8rem;
+  padding:1rem 2.4rem;
+  background:rgba(232,68,99,.3);border:1px solid #e84463;
+  border-radius:50px;color:#f5c4d0;
+  font-size:1rem;cursor:pointer;
+  font-family:'Playfair Display',serif;
+  -webkit-appearance:none;
+  min-height:48px;min-width:140px;
+  touch-action:manipulation;
+}
+.close-btn:active{background:rgba(232,68,99,.5)}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .petal,.love-strip,.love-strip-rev{animation:none}
+  .star{animation:none;opacity:.4}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+<div id="midnight-overlay">
+  <div class="midnight-msg">🎉 Mutlu 8. Yıl Dönümü! 🎉</div>
+  <div style="font-size:3.5rem;margin:.8rem 0;animation:heartbeat 1s ease-in-out infinite;color:#e84463;display:block">♥️</div>
+  <div class="midnight-sub">Devran & Ayşenur<br>25 Haziran 2018 — 25 Haziran 2026</div>
+  <div style="margin-top:1rem;font-family:'Playfair Display',serif;font-style:italic;color:rgba(245,196,208,.65);font-size:clamp(.85rem,3.5vw,.95rem);padding:0 .5rem;line-height:1.7">Daha nice yıllara, daha nice anılara...</div>
+  <button class="close-btn" onclick="document.getElementById('midnight-overlay').style.display='none'">Devam Et ♥️</button>
+</div>
+
+<div id="stars"></div>
+<div id="petals"></div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="couple-names">Devran & Ayşenur</div>
+    <span class="heart-divider">♥️</span>
+    <div class="year-badge">8</div>
+    <div class="year-label">Yıllık Aşk</div>
+    <div class="start-date">25 Haziran 2018 — 25 Haziran 2026</div>
+    <div class="countdown-box" id="countdown">
+      <div class="c-unit"><span class="c-num" id="cd-d">00</span><span class="c-lbl">Gün</span></div>
+      <span class="c-sep">:</span>
+      <div class="c-unit"><span class="c-num" id="cd-h">00</span><span class="c-lbl">Saat</span></div>
+      <span class="c-sep">:</span>
+      <div class="c-unit"><span class="c-num" id="cd-m">00</span><span class="c-lbl">Dak.</span></div>
+      <span class="c-sep">:</span>
+      <div class="c-unit"><span class="c-num" id="cd-s">00</span><span class="c-lbl">San.</span></div>
+    </div>
+    <div class="scroll-hint">↓ &nbsp; kaydır &nbsp; ↓</div>
+  </section>
+
+  <!-- SEVİYORUM ŞERİTLERİ -->
+  <div class="love-words-section"><div class="love-strip" id="strip1"></div></div>
+  <div class="love-words-section"><div class="love-strip love-strip-rev" id="strip2"></div></div>
+
+  <!-- STATS -->
+  <section class="section">
+    <div class="section-title">8 Yılın Gerçek Rakamları</div>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-num" id="s-days">—</span><span class="stat-desc">Gün Birlikte</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-hours">—</span><span class="stat-desc">Saat</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-minutes">—</span><span class="stat-desc">Dakika</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-seconds">—</span><span class="stat-desc">Saniye</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-weeks">—</span><span class="stat-desc">Hafta</span></div>
+      <div class="stat-card"><span class="stat-num">96</span><span class="stat-desc">Ay</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-seasons">—</span><span class="stat-desc">Mevsim</span></div>
+      <div class="stat-card"><span class="stat-num" id="s-heartbeats">—</span><span class="stat-desc">Kalp Atışı ♥️</span></div>
+      <div class="stat-card"><span class="stat-num">8</span><span class="stat-desc">Yıl Dönümü</span></div>
+      <div class="stat-card"><span class="stat-num">∞</span><span class="stat-desc">Sevgi</span></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="section-title">Birlikte Yazdığımız Hikaye</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">25 Haziran 2018</div><div class="tl-title">Her Şeyin Başladığı Gün ♥️</div><div class="tl-text">O gün hayatımız sonsuza dek değişti. İki yürek birleşti ve birlikte yeni bir hikayenin ilk sayfasını yazdık. Sana ilk baktığımda her şeyin değişeceğini hissettim.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2019 — 1. Yıl</div><div class="tl-title">İlk Yıl Tamamlandı</div><div class="tl-text">Tam bir yıl geçti. Gülüşler, tartışmalar, barışmalar ve her gün artan güven ile büyüyen bir sevgi...</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2020 — 2. Yıl</div><div class="tl-title">Zorlu Günler, Güçlü Biz</div><div class="tl-text">Dünyanın durduğu anlarda bile biz birbirimizin yanında durduk. Zorluklar yalnızca bizi daha da pekiştirdi.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2021 — 3. Yıl</div><div class="tl-title">Birlikte Büyümek</div><div class="tl-text">Yeni hayaller, yeni planlar. Seninle gülmek, hayal kurmak, ağlamak... Her anın ortasında seni bulmak ne büyük nimetti.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2022 — 4. Yıl</div><div class="tl-title">Kök Saldık</div><div class="tl-text">Artık sadece sevgililer değil, en iyi arkadaşlar, en büyük sırdaşlar. Seni her geçen gün daha iyi tanımak en büyük zevkim.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2023 — 5. Yıl</div><div class="tl-title">Beşinci Yıl: Altın</div><div class="tl-text">Beş yıl kolay değil. Ama seninle her saniye değerli. Her sabah seninle başlamak, her geceyi seninle bitirmek — bu dünyada isteyebileceğim en büyük şey.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2024 — 6. Yıl</div><div class="tl-title">Daha Derin Bir Bağ</div><div class="tl-text">Aşk yalnızca büyük jestler değil — sabah kahvesi, el ele yürümek, sessizce yan yana oturmak. Seninle her sıradan an olağanüstü.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2025 — 7. Yıl</div><div class="tl-title">Derinleşen Sevgi</div><div class="tl-text">Yıllar geçtikçe seni daha çok sevdiğimi fark ettim. Değişen dünyada değişmeyen tek şey seninle olan aşkım.</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">25 Haziran 2026 — 8. Yıl ✨</div><div class="tl-title">Bugün: Sekizinci Yıl</div><div class="tl-text">Sekiz yıl. 2922 gün. Sayısız an. Hâlâ aynı heyecanla, aynı sevgiyle seni düşünüyorum. Önümüzde yazılmayı bekleyen sayısız sayfa var seninle, Ayşenur.</div></div>
+    </div>
+  </section>
+
+  <div class="wavy-divider">~ ~ ~ ♥️ ~ ~ ~</div>
+
+  <!-- ANLAR -->
+  <section class="section">
+    <div class="section-title">Kalbimde Kalan Anlar</div>
+    <div class="memories-grid">
+      <div class="memory-card"><span class="memory-icon">🌅</span><div class="memory-title">İlk Bakış</div><div class="memory-text">O an her şey değişti. Sanki hayatım seni tanımak için hazırlanmıştı.</div></div>
+      <div class="memory-card"><span class="memory-icon">☕</span><div class="memory-title">Kahveli Sabahlar</div><div class="memory-text">Seninle geçirilen her sıradan sabah olağanüstü bir güzelliğe dönüştü.</div></div>
+      <div class="memory-card"><span class="memory-icon">🌧️</span><div class="memory-title">Yağmurda Beraber</div><div class="memory-text">Kötü günlerde yanımda olman, her yağmuru gökkuşağına çevirdi.</div></div>
+      <div class="memory-card"><span class="memory-icon">🌙</span><div class="memory-title">Gece Sohbetleri</div><div class="memory-text">Saatlerce konuşmak, susmak, sadece yan yana olmak. Her gece bir hazine.</div></div>
+      <div class="memory-card"><span class="memory-icon">🎂</span><div class="memory-title">Doğum Günleri</div><div class="memory-text">Seninle kutlanan her yaş günü en güzel hediyeydi.</div></div>
+      <div class="memory-card"><span class="memory-icon">🗺️</span><div class="memory-title">Keşifler</div><div class="memory-text">Her yeni yer seninle daha anlamlıydı. Her yolculuk bir macera.</div></div>
+      <div class="memory-card"><span class="memory-icon">🤝</span><div class="memory-title">Zor Anlarda</div><div class="memory-text">En zor anlarda elimi tutman, bana dünyayı verdi.</div></div>
+      <div class="memory-card"><span class="memory-icon">😂</span><div class="memory-title">Güldüğümüz Anlar</div><div class="memory-text">Seninle gülerken hayat ne kadar hafif geldi — hiç unutmuyorum.</div></div>
+    </div>
+  </section>
+
+  <!-- ŞİİR -->
+  <section class="section">
+    <div class="section-title">Sana Yazdığım Şiir</div>
+    <div class="poem-box">
+      <p class="poem-line">Sekiz yıl önce bir sabah,</p>
+      <p class="poem-line">Hayatıma girdin sessizce.</p>
+      <p class="poem-line">O günden beri her bahar,</p>
+      <p class="poem-line">Seninle açıyor içimde.</p><br>
+      <p class="poem-line">Fırtınalarda elin elimde,</p>
+      <p class="poem-line">Sessizlikte sesin yanımda.</p>
+      <p class="poem-line">Sen varsın ya dünyamda,</p>
+      <p class="poem-line">Başka neye ihtiyacım var ki?</p><br>
+      <p class="poem-line">Sekiz yıl az değil, çok değil —</p>
+      <p class="poem-line">Seninle geçince yetmiyor.</p>
+      <p class="poem-line">Her sabah yeniden başlıyor,</p>
+      <p class="poem-line">Bu aşk, hiç bitmiyor.</p><br>
+      <p class="poem-line" style="color:#e84463">— Devran, sana...</p>
+    </div>
+  </section>
+
+  <!-- SÖZLER -->
+  <section class="section">
+    <div class="section-title">Sana Söz Veriyorum</div>
+    <ul class="promise-list">
+      <li>Her sabah uyanışında yanında olmaya söz veriyorum.</li>
+      <li>Kötü günlerde elini bırakmamaya söz veriyorum.</li>
+      <li>Güldüğünde daha çok güldürmeye söz veriyorum.</li>
+      <li>Hayallerini ciddiye almaya ve desteklemeye söz veriyorum.</li>
+      <li>Seni her geçen gün daha çok sevmeye söz veriyorum.</li>
+      <li>Seninle bir ömür anı biriktirmeye söz veriyorum.</li>
+      <li>"İyi ki benim hayatımdasın" demeyi hiç bırakmamaya söz veriyorum.</li>
+      <li>Sekizinci yılda da, sekseninci yılda da seninle olmaya söz veriyorum.</li>
+    </ul>
+  </section>
+
+  <!-- AŞK MEKTUBU -->
+  <section class="section">
+    <div class="section-title">Sana Yazdıklarım</div>
+    <div class="love-card">
+      <p class="love-text">
+        Ayşenur,<br><br>
+        Seninle geçirdiğim her saniye, her dakika, her yıl hayatımın en değerli hazineleri.
+        8 yıl önce gözlerime baktığında bir şeylerin sonsuza dek değişeceğini hissettim. Ve haklıydım.<br><br>
+        Sen benim sabah güneşim, gecelerin huzurusun. Her güzel anın ortasında seni görürüm, her zor anın arkasında seni hissederim.<br><br>
+        İyi ki varsın. İyi ki o gün karşıma çıktın. İyi ki benim oldun, iyi ki ben senin.<br><br>
+        Seni seviyorum — dün, bugün ve daima. ♥️
+      </p>
+      <div class="love-sig">— Devran, 25 Haziran 2026</div>
+    </div>
+  </section>
+
+  <!-- ALT ŞERİTLER -->
+  <div class="love-words-section"><div class="love-strip" id="strip3"></div></div>
+  <div class="love-words-section"><div class="love-strip love-strip-rev" id="strip4"></div></div>
+
+  <footer class="footer">
+    <div style="font-size:2.2rem;margin-bottom:.8rem;animation:heartbeat 1.5s ease-in-out infinite;color:#e84463;display:block">♥️</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:#f5c4d0">Devran & Ayşenur</div>
+    <div style="margin-top:.4rem;font-size:.82rem">25 Haziran 2018 — Sonsuza Kadar</div>
+  </footer>
+
+</div>
+
+<script>
+// YILDIZLAR
+const starsEl=document.getElementById('stars');
+const starCount=window.innerWidth<480?60:100;
+for(let i=0;i<starCount;i++){
+  const s=document.createElement('div');s.className='star';
+  const sz=Math.random()*2.5+.5;
+  s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;--dur:${(Math.random()*4+2).toFixed(1)}s;--op:${(Math.random()*.7+.3).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  starsEl.appendChild(s);
+}
+
+// YAPRAKLAR
+const petalsEl=document.getElementById('petals');
+const petalCount=window.innerWidth<480?2:3;
+['🌸','🌹','❤️','💕','🌺','✨','🌷'].forEach(ch=>{
+  for(let j=0;j<petalCount;j++){
+    const p=document.createElement('div');p.className='petal';
+    p.textContent=ch;
+    p.style.cssText=`left:${Math.random()*100}%;font-size:${(Math.random()*.7+.7).toFixed(1)}rem;animation-duration:${(Math.random()*8+7).toFixed(1)}s;animation-delay:${(Math.random()*12).toFixed(1)}s;opacity:.6`;
+    petalsEl.appendChild(p);
+  }
+});
+
+// 50+ DİLDE SEVİYORUM
+const loveWords=[
+  {text:"Seni Seviyorum",lang:"Türkçe"},{text:"İyi ki Benimlesin",lang:"Türkçe"},
+  {text:"I Love You",lang:"İngilizce"},{text:"Je t'aime",lang:"Fransızca"},
+  {text:"Te amo",lang:"İspanyolca"},{text:"Ti amo",lang:"İtalyanca"},
+  {text:"Ich liebe dich",lang:"Almanca"},{text:"Eu te amo",lang:"Portekizce"},
+  {text:"Я тебя люблю",lang:"Rusça"},{text:"我爱你",lang:"Çince"},
+  {text:"愛してる",lang:"Japonca"},{text:"사랑해",lang:"Korece"},
+  {text:"أحبك",lang:"Arapça"},{text:"मैं तुमसे प्यार करता हूँ",lang:"Hintçe"},
+  {text:"Σ'αγαπώ",lang:"Yunanca"},{text:"Ik hou van jou",lang:"Hollandaca"},
+  {text:"Kocham cię",lang:"Lehçe"},{text:"Miluji tě",lang:"Çekçe"},
+  {text:"Szeretlek",lang:"Macarca"},{text:"Mimi nakupenda",lang:"Swahili"},
+  {text:"Ég elska þig",lang:"İzlandaca"},{text:"Jag älskar dig",lang:"İsveççe"},
+  {text:"Jeg elsker deg",lang:"Norveççe"},{text:"Jeg elsker dig",lang:"Danimarkaca"},
+  {text:"Rakastan sinua",lang:"Fince"},{text:"Ma armastan sind",lang:"Estonca"},
+  {text:"Es tevi mīlu",lang:"Letonca"},{text:"Aš tave myliu",lang:"Litvanca"},
+  {text:"Volim te",lang:"Hırvatça"},{text:"Ljubim te",lang:"Slovence"},
+  {text:"Ľúbim ťa",lang:"Slovakça"},{text:"Te iubesc",lang:"Romence"},
+  {text:"Обичам те",lang:"Bulgarca"},{text:"Te dua",lang:"Arnavutça"},
+  {text:"Seni söýýärin",lang:"Türkmence"},{text:"Мен сени сүйөм",lang:"Kırgızca"},
+  {text:"Tôi yêu bạn",lang:"Vietnamca"},{text:"ฉันรักคุณ",lang:"Tayca"},
+  {text:"Mahal kita",lang:"Filipince"},{text:"Saya cinta kamu",lang:"Malayca"},
+  {text:"Aku cinta kamu",lang:"Endonezyaca"},{text:"Bi t'hú",lang:"Kürtçe"},
+  {text:"Nakupenda sana",lang:"Swahili"},{text:"იყვარებ",lang:"Gürcüce"},
+  {text:"Seni çok seviyorum",lang:"Türkçe"},{text:"İyi ki varsın",lang:"Türkçe"},
+  {text:"Я кахаю цябе",lang:"Ukraynaca"}
+];
+
+function buildStrip(id,words){
+  const el=document.getElementById(id);if(!el)return;
+  [...words,...words].forEach(w=>{
+    const d=document.createElement('div');d.className='love-word';
+    d.innerHTML=`<span class="lw-heart">♥️</span><span class="lw-text">${w.text}</span><span class="lw-lang">${w.lang}</span>`;
+    el.appendChild(d);
+  });
+}
+buildStrip('strip1',loveWords);
+buildStrip('strip2',[...loveWords].reverse());
+buildStrip('strip3',loveWords);
+buildStrip('strip4',[...loveWords].reverse());
+
+// GERÇEK RAKAMLAR
+const start=new Date('2018-06-25T00:00:00');
+const anniversary=new Date('2026-06-25T00:00:00');
+const ms=anniversary-start;
+const days=Math.floor(ms/86400000);
+document.getElementById('s-days').textContent=days.toLocaleString('tr-TR');
+document.getElementById('s-hours').textContent=Math.floor(ms/3600000).toLocaleString('tr-TR');
+document.getElementById('s-minutes').textContent=Math.floor(ms/60000).toLocaleString('tr-TR');
+document.getElementById('s-seconds').textContent=Math.floor(ms/1000).toLocaleString('tr-TR');
+document.getElementById('s-weeks').textContent=Math.floor(days/7).toLocaleString('tr-TR');
+document.getElementById('s-seasons').textContent=Math.floor(days/91);
+document.getElementById('s-heartbeats').textContent=(Math.floor(ms/60000)*72).toLocaleString('tr-TR');
+
+// KONFETİ
+const canvas=document.getElementById('confetti-canvas');
+const ctx=canvas.getContext('2d');
+let confettiActive=false,particles=[],midnightDone=false;
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+
+function spawnConfetti(){
+  particles=[];
+  const count=window.innerWidth<480?150:300;
+  for(let i=0;i<count;i++){
+    particles.push({
+      x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,
+      w:Math.random()*10+4,h:Math.random()*5+3,
+      color:['#e84463','#f5c4d0','#ffd700','#ff69b4','#ff4500','#fff','#ff1493','#f39c12'][Math.floor(Math.random()*8)],
+      rot:Math.random()*360,speed:Math.random()*3+1.5,
+      rotSpeed:(Math.random()-.5)*5,drift:(Math.random()-.5)*1.5
+    });
+  }
+}
+function animateConfetti(){
+  if(!confettiActive)return;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  let alive=false;
+  particles.forEach(p=>{
+    p.y+=p.speed;p.x+=p.drift;p.rot+=p.rotSpeed;
+    if(p.y<canvas.height+20)alive=true;
+    ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);
+    ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();
+  });
+  if(alive)requestAnimationFrame(animateConfetti);
+  else{ctx.clearRect(0,0,canvas.width,canvas.height);setTimeout(()=>{spawnConfetti();requestAnimationFrame(animateConfetti);},2000);}
+}
+function triggerMidnight(){
+  if(midnightDone)return;midnightDone=true;
+  canvas.style.display='block';confettiActive=true;
+  spawnConfetti();animateConfetti();
+  document.getElementById('midnight-overlay').style.display='flex';
+  setTimeout(()=>{confettiActive=false;canvas.style.display='none';},20000);
+}
+
+// GERİ SAYIM
+function updateCountdown(){
+  const target=new Date('2026-06-25T00:00:00');
+  const now=new Date();
+  let diff=target-now;
+  if(diff<=0){
+    document.getElementById('countdown').innerHTML=
+      '<div style="font-family:Playfair Display,serif;font-size:clamp(1rem,5vw,2rem);color:#e84463;text-shadow:0 0 15px rgba(232,68,99,.7);padding:.5rem">🎉 Mutlu 8. Yıl Dönümü! 🎉</div>';
+    triggerMidnight();return;
+  }
+  const d=Math.floor(diff/86400000);diff%=86400000;
+  const h=Math.floor(diff/3600000);diff%=3600000;
+  const m=Math.floor(diff/60000);diff%=60000;
+  const s=Math.floor(diff/1000);
+  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+}
+updateCountdown();setInterval(updateCountdown,1000);
+
+// SCROLL ANIMASYONLARI
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.1,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.tl-item,.memory-card').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
